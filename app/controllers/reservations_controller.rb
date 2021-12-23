@@ -19,6 +19,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def destroy
+    @reservation = Reservation.find(params[:id])
+     respond_to do |format|
+      format.html
+      format.js
+    end
+    @reservation.destroy
+  end
+
   private
 
   def reservation_params

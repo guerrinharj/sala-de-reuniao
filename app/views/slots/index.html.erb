@@ -24,10 +24,15 @@
           <% @slots.each do |slot| %>
             <% if slot.day == day && slot.hour == "#{hour}:00"%>
                 <% if slot.reservations.empty? %>
+                <div class="slot-<%=slot.id%>">
                 <%= link_to "Disponivel", new_slot_reservation_path(slot), remote: true %>
+                </div>
                 <% else %>
-                Reservado para <%= slot.reservations.last.user.name %>
+                <div class="slot-<%= slot.id %>-reservation-<%=slot.reservations.last.id%>">
+                <p>Reservado para <%= slot.reservations.last.user.name %></p>
+                <p> <%= link_to "Deletar?", slot_reservation_path(slot, slot.reservations.last), method: :delete,  data: { confirm: "Are you sure?" }, remote: true %></p>
                 <% end %>
+                </div>
             <% end %>
           <% end %>
         <% end %>
