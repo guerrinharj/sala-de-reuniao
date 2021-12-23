@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Slot.destroy_all
+days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
+hours = (6..23).to_a
+
+days.each do |day|
+  hours.each do |hour|
+    slot = Slot.new
+    slot.day = day
+    slot.hour = "#{hour}:00"
+    slot.save!
+  end
+end

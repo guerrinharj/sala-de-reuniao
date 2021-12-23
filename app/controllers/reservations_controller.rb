@@ -2,9 +2,7 @@ class ReservationsController < ApplicationController
   def index
     @user = current_user
     @reservations = Reservation.all
-
-    @days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
-    @hours = (6..23).to_a
+    @slot
   end
 
   def new
@@ -16,7 +14,14 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    raise
+    @reservation = Reservation.new(reservation_params)
+    @reservation.user = current_user
+    if @reservation.save
+      redirect_to reservations_path
+    else
+      flash.alert = "Fields can't be blank"
+      render :new
+    end
   end
 
   private
