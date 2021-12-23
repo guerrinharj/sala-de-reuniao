@@ -2,16 +2,18 @@
 
 <table>
   <tr>
-    <th> Horário </th>
+    <th class="px-4 border border-dark"> Horário </th>
     <% @days.each do |day| %>
-    <th> <%= day %> </th>
+    <th class="px-4 border border-dark"> <%= day %> </th>
     <% end %>
   </tr>
   <% @hours.each do |hour| %>
     <tr>
-      <td> <%= hour %>:00  </td>
+      <td class="p-4 border border-dark"> <%= hour %>:00  </td>
       <% @days.each do |day| %>
-      <td> Disponivel  </td>
+      <td class="p-4 border border-dark">
+        <%= link_to "Disponivel", root_path %>
+      </td>
       <% end %>
     </tr>
   <% end %>
