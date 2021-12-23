@@ -1,7 +1,5 @@
 <h1>Reserva de Sala</h1>
 
-<h3> Boa <%= @today %> </h3>
-
 <div class="modal-outer d-flex justify-content-center align-items-center">
   <div id="modal-inner">
   </div>
@@ -23,9 +21,17 @@
         <td class="p-4 border border-dark"> <%= hour %>:00  </td>
         <% @days.each do |day| %>
         <td class="disponivel p-4 border border-dark">
-          <%= link_to "Disponivel", new_reservation_path, remote: true %>
-        </td>
+          <% @slots.each do |slot| %>
+            <% if slot.day == day && slot.hour == "#{hour}:00"%>
+                <% if slot.reservations.empty? %>
+                <%= link_to "Disponivel", new_slot_reservation_path(slot), remote: true %>
+                <% else %>
+                Reservado para <%= slot.reservations.last.user.name %>
+                <% end %>
+            <% end %>
+          <% end %>
         <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

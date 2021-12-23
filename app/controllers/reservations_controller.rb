@@ -1,11 +1,6 @@
 class ReservationsController < ApplicationController
-  def index
-    @user = current_user
-    @reservations = Reservation.all
-    @slot
-  end
-
   def new
+    @slot = Slot.find(params[:slot_id])
     @user = current_user
     @reservation = Reservation.new
     respond_to do |format|
@@ -16,11 +11,11 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user = current_user
+    @reservation.slot_id = params[:slot_id]
     if @reservation.save
-      redirect_to reservations_path
+      redirect_to slots_path
     else
       flash.alert = "Fields can't be blank"
-      render :new
     end
   end
 
