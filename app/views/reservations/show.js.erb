@@ -1,0 +1,3 @@
+
+let show<%=@random%> = document.querySelector('#modal-inner')
+show<%=@random%>.innerHTML =  '<%= j render 'info', slot: @slot, reservation: @reservation%>'

@@ -1,0 +1,9 @@
+<div>
+  <h3> <%= reservation.description %> </h3>
+  <p> as <%= reservation.slot.hour %> de <%= reservation.slot.day %>-feira </p>
+  <p> Esta sala foi marcado por <%= reservation.user.name %> </p>
+  <% if reservation.user == current_user%>
+  <p> <%= link_to "Editar?", edit_slot_reservation_path(reservation.slot, reservation) %> </p>
+  <div class="edit-reservation"> </div>
+  <% end %>
+</div>

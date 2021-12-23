@@ -1,4 +1,5 @@
 <div class="modal-box">
+      <h2> <%= slot.day %> as <%= slot.hour %> </h2>
       <%= simple_form_for([slot, reservation]) do |f| %>
         <%= f.input :description %>
         <%= f.submit %>

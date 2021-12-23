@@ -1,3 +1,2 @@
-const modal = document.querySelector('#modal-inner')
-
-modal.innerHTML =  '<%= j render 'new', slot: @slot, reservation: @reservation%>'
+let new<%= @random %> = document.querySelector('#modal-inner')
+new<%= @random %>.innerHTML = '<%= j render 'form', slot: @slot, reservation: @reservation%>'

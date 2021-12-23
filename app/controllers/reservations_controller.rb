@@ -1,5 +1,19 @@
 class ReservationsController < ApplicationController
+
+  def show
+    @random = rand(1...9_999_999_999)
+    @slots = Slot.all
+    @slot = Slot.find(params[:slot_id])
+    @user = current_user
+    @reservation = Reservation.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
   def new
+    @random = rand(1...9_999_999_999)
     @slot = Slot.find(params[:slot_id])
     @user = current_user
     @reservation = Reservation.new

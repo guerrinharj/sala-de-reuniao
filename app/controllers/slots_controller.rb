@@ -5,7 +5,7 @@ class SlotsController < ApplicationController
     @reservations = Reservation.all
     @days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
     @hours = (6..23).to_a
-    @slots = Slot.all
+    @slots = Slot.where(week: 2)
   end
 
 end
