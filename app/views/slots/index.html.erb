@@ -1,45 +1,54 @@
-<h1>Reserva de Sala</h1>
+<div class="container">
 
-<div class="modal-outer d-flex justify-content-center align-items-center">
+<h1 class="text-center m-5">Reserva de Sala</h1>
+
+<div class="modal-outer d-flex justify-content-center align-items-center col-6 m-auto">
   <div id="modal-inner">
   </div>
 </div>
-
-<table>
-  <thead>
-    <tr>
-      <th class="px-4 border border-dark"> Horário </th>
-      <% @days.each do |day| %>
-      <th class="px-4 border border-dark"> <%= day %> </th>
-      <% end %>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @hours.each do |hour| %>
+  <table class="col-12">
+    <thead>
       <tr>
-        <td class="p-4 border border-dark"> <%= hour %>:00  </td>
+        <div class="d-flex justify-content-between align-items-center">
+          <span> Semana Passada </span>
+          <h3> Essa Semana </h3>
+          <span> Proxima Semana </span>
+        </div>
+        </tr>
+      <tr>
+        <th class="px-4 border border-dark"> Horário </th>
         <% @days.each do |day| %>
-        <td class="disponivel p-4 border border-dark">
-          <% @slots.each do |slot| %>
-            <% if slot.day == day && slot.hour == "#{hour}:00"%>
-                <% if slot.reservations.empty? %>
-                <div class="slot-<%=slot.id%>">
-                <%= link_to "Disponivel", new_slot_reservation_path(slot), remote: true %>
-                </div>
-                <% else %>
-                <div class="slot-<%= slot.id %>-reservation-<%=slot.reservations.last.id%>">
-                <p><%=link_to slot_reservation_path(slot, slot.reservations.last), remote: true do %></p>
-                  Reservado para <%= slot.reservations.last.user.name %>
+        <th class="px-4 border border-dark"> <%= day %> </th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @hours.each do |hour| %>
+        <tr>
+          <td class="p-4 border border-dark"> <%= hour %>:00  </td>
+          <% @days.each do |day| %>
+          <td class="disponivel p-4 border border-dark">
+            <% @slots.each do |slot| %>
+              <% if slot.day == day && slot.hour == "#{hour}:00"%>
+                  <% if slot.reservations.empty? %>
+                  <div class="slot-<%=slot.id%>">
+                  <%= link_to "Disponivel", new_slot_reservation_path(slot), remote: true %>
+                  </div>
+                  <% else %>
+                  <div class="slot-<%= slot.id %>-reservation-<%=slot.reservations.last.id%>">
+                  <p><%=link_to slot_reservation_path(slot, slot.reservations.last), remote: true do %></p>
+                    Reservado para <%= slot.reservations.last.user.name %>
+                    <% end %>
+                  <p> <%= link_to "Deletar?", slot_reservation_path(slot, slot.reservations.last), method: :delete,  data: { confirm: "Are you sure?" }, remote: true %></p>
                   <% end %>
-                <p> <%= link_to "Deletar?", slot_reservation_path(slot, slot.reservations.last), method: :delete,  data: { confirm: "Are you sure?" }, remote: true %></p>
-                <% end %>
-                </div>
+                  </div>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
