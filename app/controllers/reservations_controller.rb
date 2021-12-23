@@ -11,7 +11,6 @@ class ReservationsController < ApplicationController
     end
   end
 
-
   def new
     @random = rand(1...9_999_999_999)
     @slot = Slot.find(params[:slot_id])
@@ -33,8 +32,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def edit
+    @slot = Slot.find(params[:slot_id])
+    @reservation = Reservation.where(slot: @slot)
+    raise
+  end
+
   def destroy
-    @reservation = Reservation.find(params[:id])
+    @slot = Slot.find(params[:slot_id])
+    @reservation = Reservation.where(slot: @slot).last
      respond_to do |format|
       format.html
       format.js
