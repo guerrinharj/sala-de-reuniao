@@ -2,10 +2,17 @@ class ReservationsController < ApplicationController
   def index
     @user = current_user
     @reservations = Reservation.all
-    @reservation = Reservation.new
 
     @days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
     @hours = (6..23).to_a
+  end
+
+  def new
+    @user = current_user
+    @reservation = Reservation.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create

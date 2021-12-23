@@ -1,0 +1,7 @@
+<div class="modal-box">
+      <%= simple_form_for([user, reservation]) do |f| %>
+        <%= f.datetime_field :date%>
+        <%= f.input :description %>
+        <%= f.submit %>
+       <% end %>
+</div>

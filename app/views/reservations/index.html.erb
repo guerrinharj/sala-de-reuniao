@@ -1,20 +1,30 @@
 <h1>Reserva de Sala</h1>
 
+<div class="modal-outer d-flex justify-content-center align-items-center">
+  <div id="modal-inner">
+  </div>
+</div>
+
 <table>
-  <tr>
-    <th class="px-4 border border-dark"> Horário </th>
-    <% @days.each do |day| %>
-    <th class="px-4 border border-dark"> <%= day %> </th>
-    <% end %>
-  </tr>
-  <% @hours.each do |hour| %>
+  <thead>
     <tr>
-      <td class="p-4 border border-dark"> <%= hour %>:00  </td>
+      <th class="px-4 border border-dark"> Horário </th>
       <% @days.each do |day| %>
-      <td class="p-4 border border-dark">
-        <%= link_to "Disponivel", root_path %>
-      </td>
+      <th class="px-4 border border-dark"> <%= day %> </th>
       <% end %>
     </tr>
-  <% end %>
+  </thead>
+
+  <tbody>
+    <% @hours.each do |hour| %>
+      <tr>
+        <td class="p-4 border border-dark"> <%= hour %>:00  </td>
+        <% @days.each do |day| %>
+        <td class="disponivel p-4 border border-dark">
+          <%= link_to "Disponivel", new_reservation_path, remote: true %>
+        </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
