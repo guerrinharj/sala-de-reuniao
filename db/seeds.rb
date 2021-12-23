@@ -13,6 +13,7 @@ hours = (6..23).to_a
 days.each do |day|
   hours.each do |hour|
     slot = Slot.new
+    slot.week = 2
     slot.day = day
     slot.hour = "#{hour}:00"
     slot.save!
