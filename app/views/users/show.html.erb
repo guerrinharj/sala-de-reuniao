@@ -1,0 +1,10 @@
+Hi <%= @user.name %>
+
+<ul>
+  <% @reservations.each do |reservation|%>
+  <li class="p-4">
+    <p class="font-weight-bold"><%= reservation.description %></p>
+    <%= reservation.slot.day %> as <%= reservation.slot.hour %>
+  </li>
+  <% end%>
+</ul>

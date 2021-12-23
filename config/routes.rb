@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :slots do
     resources :reservations
   end
+  resources :users, only: [:show]
 end
