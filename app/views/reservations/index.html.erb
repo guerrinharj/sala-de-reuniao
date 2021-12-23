@@ -7,4 +7,12 @@
     <th> <%= day %> </th>
     <% end %>
   </tr>
+  <% @hours.each do |hour| %>
+    <tr>
+      <td> <%= hour %>:00  </td>
+      <% @days.each do |day| %>
+      <td> Disponivel  </td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
