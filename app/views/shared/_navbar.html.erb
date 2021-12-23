@@ -12,7 +12,7 @@
     <ul class="navbar-nav mr-auto flex align-items-center">
       <% if user_signed_in? %>
         <li class="nav-item active mr-2">
-          <span id="navbarDropdown" data-toggle="dropdown" class="avatar dropdown-toggle opacity-0">Hi, <%= current_user.name %>!</span>
+          <span id="navbarDropdown" data-toggle="dropdown" class="avatar dropdown-toggle opacity-0">Olá, <%= current_user.name %>!</span>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Suas reservas", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
