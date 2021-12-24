@@ -10,12 +10,18 @@ Slot.destroy_all
 days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
 hours = (6..23).to_a
 
-days.each do |day|
-  hours.each do |hour|
-    slot = Slot.new
-    slot.week = 2
-    slot.day = day
-    slot.hour = "#{hour}:00"
-    slot.save!
+def seed_slots(week)
+  days.each do |day|
+    hours.each do |hour|
+      slot = Slot.new
+      slot.week = week
+      slot.day = day
+      slot.hour = "#{hour}:00"
+      slot.save!
+    end
   end
 end
+
+seed_slots(1)
+seed_slots(2)
+seed_slots(3)
