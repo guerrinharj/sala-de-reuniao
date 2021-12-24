@@ -1,9 +1,10 @@
 class ReservationsController < ApplicationController
+  before_action :set_randomnumber, only: %i[show new edit]
+  before_action :set_slot, only: %i[show new edit update destroy]
+  before_action :set_reservation, only: %i[edit update destroy]
+
   def show
-    @random = rand(1...9_999_999_999)
     @slots = Slot.all
-    @slot = Slot.find(params[:slot_id])
-    @user = current_user
     @reservation = Reservation.find(params[:id])
     respond_to do |format|
       format.js
@@ -11,12 +12,17 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @random = rand(1...9_999_999_999)
-    @slot = Slot.find(params[:slot_id])
-    @user = current_user
     @reservation = Reservation.new
     respond_to do |format|
       format.js
+    end
+  end
+
+  def this_week?(reservation)
+    if reservation.slot.week == 2
+      redirect_to root_path
+    else
+      redirect_to nextweek_path
     end
   end
 
@@ -25,20 +31,13 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     @reservation.slot_id = params[:slot_id]
     if @reservation.save
-      if @reservation.slot.week == 2
-        redirect_to root_path
-      else
-        redirect_to nextweek_path
-      end
+      this_week?(@reservation)
     else
       flash.alert = "Fields can't be blank"
     end
   end
 
   def edit
-    @random = rand(1...9_999_999_999)
-    @slot = Slot.find(params[:slot_id])
-    @reservation = Reservation.where(slot: @slot).last
     respond_to do |format|
       format.js
     end
@@ -46,7 +45,6 @@ class ReservationsController < ApplicationController
 
   def update
     @slot = Slot.find(params[:slot_id])
-    @reservation = Reservation.where(slot: @slot).last
     @reservation.update(reservation_params)
     if @reservation.save
       redirect_to slots_path
@@ -56,8 +54,6 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    @slot = Slot.find(params[:slot_id])
-    @reservation = Reservation.where(slot: @slot).last
     respond_to do |format|
       format.html
       format.js
@@ -66,6 +62,19 @@ class ReservationsController < ApplicationController
   end
 
   private
+
+  def set_randomnumber
+    @random = rand(1...9_999_999_999)
+  end
+
+  def set_slot
+    @slot = Slot.find(params[:slot_id])
+    @user = current_user
+  end
+
+  def set_reservation
+    @reservation = Reservation.where(slot: @slot).last
+  end
 
   def reservation_params
     params.require(:reservation).permit(:date, :description)
