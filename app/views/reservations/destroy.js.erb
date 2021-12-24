@@ -1,3 +1,2 @@
 const deleteRes = document.querySelector('.slot-<%= @reservation.slot.id%>-reservation-<%=@reservation.id%>')
-
 deleteRes.innerHTML = '<%= link_to "Disponivel", new_slot_reservation_path(@reservation.slot), remote: true %>'
