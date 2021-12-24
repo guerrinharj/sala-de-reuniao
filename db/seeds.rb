@@ -29,7 +29,6 @@ seed_slots(1)
 seed_slots(2)
 seed_slots(3)
 
-
 Reservation.destroy_all
 
 20.times do
