@@ -26,7 +26,11 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     @reservation.slot_id = params[:slot_id]
     if @reservation.save
-      redirect_to slots_path
+      if @reservation.slot.week == 2
+        redirect_to root_path
+      else
+        redirect_to nextweek_path
+      end
     else
       flash.alert = "Fields can't be blank"
     end
