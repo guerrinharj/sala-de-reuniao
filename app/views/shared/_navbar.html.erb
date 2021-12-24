@@ -1,28 +1,29 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container">
+    <div>
+      Reserva de Sala
+    </div>
 
-  <div>
-    Reserva de Sala
-  </div>
+    <div>
+      <%= link_to "Agenda", slots_path %>
+    </div>
 
-  <div>
-    <%= link_to "Agenda", slots_path %>
-  </div>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto flex align-items-center">
-      <% if user_signed_in? %>
-        <li class="nav-item active mr-2">
-          <span id="navbarDropdown" data-toggle="dropdown" class="avatar dropdown-toggle opacity-0">Olá, <%= current_user.name %>!</span>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Suas reservas", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto flex align-items-center">
+        <% if user_signed_in? %>
+          <li class="nav-item active mr-2">
+            <span id="navbarDropdown" data-toggle="dropdown" class="avatar dropdown-toggle opacity-0">Olá, <%= current_user.name %>!</span>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <%= link_to "Suas reservas", user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

@@ -1,0 +1,29 @@
+tr:nth-child(odd) > td {
+  background-color: gainsboro
+}
+
+table a {
+  color: black;
+}
+
+table .reservado {
+  font-weight: 800;
+}
+
+table .active-td:hover {
+  background-color: black;
+}
+
+table .active-td:hover a {
+   color: white;
+   text-decoration: none;
+}
+
+.inactive-td:hover {
+  background-color: inherit!important
+}
+
+.inactive-td:hover a {
+  color: black;
+  text-decoration: none;
+}

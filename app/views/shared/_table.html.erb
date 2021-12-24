@@ -8,9 +8,9 @@
       </div>
       </tr>
     <tr>
-      <th class="px-4 border border-dark"> Horário </th>
+      <th class="px-2 border border-dark"> Horário </th>
       <% days.each do |day| %>
-      <th class="px-4 border border-dark"> <%= day %> </th>
+      <th class="px-2 border border-dark"> <%= day %> </th>
       <% end %>
     </tr>
   </thead>
@@ -18,36 +18,39 @@
   <tbody>
     <% hours.each do |hour| %>
       <tr>
-        <td class="p-4 border border-dark"> <%= hour %>:00  </td>
+        <td class="p-2 border border-dark"> <%= hour %>:00  </td>
         <% days.each do |day| %>
-        <td class="p-4 border border-dark">
+        <td class="p-2 border border-dark <%= params[:action] == "lastweek" ? 'inactive-td' : 'active-td' %>">
           <% slots.each do |slot| %>
             <% if slot.day == day && slot.hour == "#{hour}:00"%>
-                <% if slot.reservations.empty? %>
-                <div class="slot-<%=slot.id%>">
-                <% if slot.week == 1 %>
-                  -
-                <% else %>
-                  <%= link_to "Disponivel", new_slot_reservation_path(slot), class: "slot-info", remote: true %>
-                <% end %>
-                </div>
-                <% else %>
-                <div class="slot-<%= slot.id %>-reservation-<%=slot.reservations.last.id%>">
-                <p><%=link_to slot_reservation_path(slot, slot.reservations.last), remote: true, class: "slot-info" do %></p>
-                  Reservado <%= params[:action] == "lastweek" ? 'por' : 'para' %> <%= slot.reservations.last.user.name %>
+              <% if slot.reservations.empty? %>
+                  <div class="slot-<%=slot.id%>">
+                  <% if slot.week == 1 %>
+                    -
+                  <% else %>
+                    <%= link_to "Disponivel", new_slot_reservation_path(slot), class: "slot-info", remote: true %>
                   <% end %>
-                  <% if params[:action] == "lastweek"%>
-                    <span></span>
+                  </div>
+                  <% else %>
+                  <div class="slot-<%= slot.id %>-reservation-<%=slot.reservations.last.id%> inactive-td">
+                  <span>
+                    <%=link_to slot_reservation_path(slot, slot.reservations.last), remote: true, class: "slot-info reservado" do %>
+                      Reservado <%= params[:action] == "lastweek" ? 'por' : 'para' %> <%= slot.reservations.last.user.name %>
+                    <% end %>
+                    <% if params[:action] == "lastweek"%>
                     <% else %>
-                    <% if slot.reservations.last.user == current_user %>
-                    <p> <%= link_to "Deletar?", slot_reservation_path(slot, slot.reservations.last), method: :delete,  data: { confirm: "Are you sure?" }, remote: true %></p>
+                      <% if slot.reservations.last.user == current_user %>
+                      <%= link_to slot_reservation_path(slot, slot.reservations.last), method: :delete,  data: { confirm: "Are you sure?" }, remote: true do %>
+                       <i class="fas fa-undo"></i>
+                      <% end %>
+                    <% end %>
+                  </span>
                     <% end %>
                   <% end %>
-                <% end %>
-                </div>
+                  </div>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
         </td>
       </tr>
     <% end %>
