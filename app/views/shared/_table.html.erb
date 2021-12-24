@@ -20,7 +20,7 @@
         <tr>
           <td class="p-4 border border-dark"> <%= hour %>:00  </td>
           <% days.each do |day| %>
-          <td class="disponivel p-4 border border-dark">
+          <td class="p-4 border border-dark">
             <% slots.each do |slot| %>
               <% if slot.day == day && slot.hour == "#{hour}:00"%>
                   <% if slot.reservations.empty? %>
@@ -28,7 +28,7 @@
                   <% if slot.week == 1 %>
                     -
                   <% else %>
-                    <%= link_to "Disponivel", new_slot_reservation_path(slot), remote: true %>
+                    <%= link_to "Disponivel", new_slot_reservation_path(slot), class: "disponivel", remote: true %>
                   <% end %>
                   </div>
                   <% else %>

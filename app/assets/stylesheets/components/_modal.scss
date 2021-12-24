@@ -1,0 +1,10 @@
+.fixed-modal {
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    width: 50vw;
+    background-color: white;
+    border: solid 1px black;
+    z-index: 3;
+    padding: 20px;
+}
