@@ -7,10 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Slot.destroy_all
-days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
-hours = (6..23).to_a
 
 def seed_slots(week)
+  days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
+  hours = (6..23).to_a
+
   days.each do |day|
     hours.each do |hour|
       slot = Slot.new
