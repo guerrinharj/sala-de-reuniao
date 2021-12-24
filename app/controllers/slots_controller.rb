@@ -10,7 +10,6 @@ class SlotsController < ApplicationController
   end
 
   def lastweek
-    skip_policy_scope
     skip_authorization
     @days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
     @hours = (6..23).to_a
@@ -18,7 +17,6 @@ class SlotsController < ApplicationController
   end
 
   def nextweek
-    skip_policy_scope
     skip_authorization
     @days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
     @hours = (6..23).to_a
