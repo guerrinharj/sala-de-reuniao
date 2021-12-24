@@ -28,12 +28,12 @@
                 <% if slot.week == 1 %>
                   -
                 <% else %>
-                  <%= link_to "Disponivel", new_slot_reservation_path(slot), class: "disponivel", remote: true %>
+                  <%= link_to "Disponivel", new_slot_reservation_path(slot), class: "slot-info", remote: true %>
                 <% end %>
                 </div>
                 <% else %>
                 <div class="slot-<%= slot.id %>-reservation-<%=slot.reservations.last.id%>">
-                <p><%=link_to slot_reservation_path(slot, slot.reservations.last), remote: true do %></p>
+                <p><%=link_to slot_reservation_path(slot, slot.reservations.last), remote: true, class: "slot-info" do %></p>
                   Reservado <%= params[:action] == "lastweek" ? 'por' : 'para' %> <%= slot.reservations.last.user.name %>
                   <% end %>
                   <% if params[:action] == "lastweek"%>

@@ -5,7 +5,6 @@ class ReservationsController < ApplicationController
     @slot = Slot.find(params[:slot_id])
     @user = current_user
     @reservation = Reservation.find(params[:id])
-    authorize @reservation
     respond_to do |format|
       format.js
     end
@@ -16,7 +15,6 @@ class ReservationsController < ApplicationController
     @slot = Slot.find(params[:slot_id])
     @user = current_user
     @reservation = Reservation.new
-    authorize @reservation
     respond_to do |format|
       format.js
     end
@@ -41,7 +39,6 @@ class ReservationsController < ApplicationController
     @random = rand(1...9_999_999_999)
     @slot = Slot.find(params[:slot_id])
     @reservation = Reservation.where(slot: @slot).last
-    authorize @reservation
     respond_to do |format|
       format.js
     end
@@ -50,7 +47,6 @@ class ReservationsController < ApplicationController
   def update
     @slot = Slot.find(params[:slot_id])
     @reservation = Reservation.where(slot: @slot).last
-    authorize @reservation
     @reservation.update(reservation_params)
     if @reservation.save
       redirect_to slots_path
@@ -62,8 +58,7 @@ class ReservationsController < ApplicationController
   def destroy
     @slot = Slot.find(params[:slot_id])
     @reservation = Reservation.where(slot: @slot).last
-    authorize @reservation
-     respond_to do |format|
+    respond_to do |format|
       format.html
       format.js
     end
