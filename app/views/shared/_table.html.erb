@@ -39,7 +39,9 @@
                   <% if params[:action] == "lastweek"%>
                     <span></span>
                     <% else %>
+                    <% if slot.reservations.last.user == current_user %>
                     <p> <%= link_to "Deletar?", slot_reservation_path(slot, slot.reservations.last), method: :delete,  data: { confirm: "Are you sure?" }, remote: true %></p>
+                    <% end %>
                   <% end %>
                 <% end %>
                 </div>

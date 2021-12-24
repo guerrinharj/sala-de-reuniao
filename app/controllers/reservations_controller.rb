@@ -24,7 +24,6 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    authorize @reservation
     @reservation.user = current_user
     @reservation.slot_id = params[:slot_id]
     if @reservation.save
@@ -43,7 +42,7 @@ class ReservationsController < ApplicationController
     @slot = Slot.find(params[:slot_id])
     @reservation = Reservation.where(slot: @slot).last
     authorize @reservation
-     respond_to do |format|
+    respond_to do |format|
       format.js
     end
   end

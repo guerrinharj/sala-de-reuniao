@@ -1,6 +1,7 @@
 class SlotsController < ApplicationController
   def index
     skip_policy_scope
+    skip_authorization
     @user = current_user
     @reservations = Reservation.all
     @days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
@@ -10,6 +11,7 @@ class SlotsController < ApplicationController
 
   def lastweek
     skip_policy_scope
+    skip_authorization
     @days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
     @hours = (6..23).to_a
     @slots = Slot.where(week: 1)
@@ -17,6 +19,7 @@ class SlotsController < ApplicationController
 
   def nextweek
     skip_policy_scope
+    skip_authorization
     @days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
     @hours = (6..23).to_a
     @slots = Slot.where(week: 3)
