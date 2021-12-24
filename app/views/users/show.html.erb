@@ -1,11 +1,11 @@
 <div class="container text-center">
 
-  <div class="col-3 mt-5 mx-auto ">
+  <div class="col-lg-3 col-12 mt-5 mx-auto ">
    <h2> <%= @user.name %> </h2>
   </div>
 
 
-  <ul class="col-6 m-auto">
+  <ul class="col-lg-6 col-12 m-auto">
     <% @reservations.each do |reservation|%>
     <li class="border-top border-bottom list-group-item user-page-reservation">
       <p class="font-weight-bold"><%= reservation.description %></p>
