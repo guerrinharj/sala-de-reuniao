@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'faker'
+
 Slot.destroy_all
 
 def seed_slots(week)
@@ -26,3 +28,14 @@ end
 seed_slots(1)
 seed_slots(2)
 seed_slots(3)
+
+
+Reservation.destroy_all
+
+20.times do
+  @reservation = Reservation.new
+  @reservation.user = User.all.order('RANDOM()').first
+  @reservation.slot = Slot.where(week: 1).order('RANDOM()').first
+  @reservation.description = "Reunião com #{Faker::IndustrySegments.sub_sector}"
+  @reservation.save!
+end

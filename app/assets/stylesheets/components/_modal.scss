@@ -1,4 +1,4 @@
-.fixed-modal {
+.modal-inner {
     position: fixed;
     top: 25%;
     left: 25%;
@@ -7,4 +7,9 @@
     border: solid 1px black;
     z-index: 3;
     padding: 20px;
+    display: none;
+}
+
+.modal-on {
+  display: block;
 }
