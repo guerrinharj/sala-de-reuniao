@@ -1,7 +1,7 @@
-<table class="col-12">
+<table class="col-12 to-blur">
   <thead>
     <tr>
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="week-menu d-flex justify-content-between align-items-center">
         <span class="<%= params[:action] == "lastweek" ? "font-weight-bold" : '' %>"> <%= link_to 'Semana Passada', lastweek_path %></span>
         <span class="<%= params[:action] == "index" ? "font-weight-bold" : '' %>"> <%= link_to 'Essa Semana', root_path %></span>
         <span class="<%= params[:action] == "nextweek" ? "font-weight-bold" : '' %>"> <%= link_to 'Proxima Semana', nextweek_path %></span>

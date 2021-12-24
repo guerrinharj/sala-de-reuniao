@@ -8,8 +8,30 @@
     z-index: 3;
     padding: 20px;
     display: none;
+    transition: 0.3 ease;
+}
+
+.close-btn {
+  cursor: pointer;
+  display: none;
+  position: fixed;
+  background-color: white;
+  z-index: 4;
+  right: 20%;
+  border: solid 1px black;
+  padding: 20px;
 }
 
 .modal-on {
   display: block;
+}
+
+.blur {
+  filter: blur(5px);
+  transition: 0.3 ease;
+}
+
+.opacity {
+  transition: 0.3 ease;
+  opacity: 0;
 }
