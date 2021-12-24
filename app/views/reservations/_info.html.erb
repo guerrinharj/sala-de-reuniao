@@ -1,5 +1,9 @@
 <div>
-  <div id="modal-edit"> <h4><%= reservation.description %></h4> </div>
+  <div id="modal-edit">
+    <div class="d-flex">
+      <h4><%= reservation.description %></h4>
+    </div>
+  </div>
   <p> as <%= reservation.slot.hour %> de <%= reservation.slot.day %>-feira </p>
   <p> Este horario foi marcado por <%= link_to reservation.user.name, user_path(reservation.user) %> </p>
   <% if reservation.user == current_user %>

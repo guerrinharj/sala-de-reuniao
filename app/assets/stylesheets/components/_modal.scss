@@ -13,14 +13,10 @@
 
 .close-btn {
   cursor: pointer;
-  display: none;
-  position: fixed;
-  background-color: white;
   z-index: 4;
-  right: 20%;
-  top: 20%;
-  border: solid 1px black;
-  padding: 20px 30px;
+  position: fixed;
+  right: 30%;
+  top: 27.8%;
 }
 
 .modal-on {

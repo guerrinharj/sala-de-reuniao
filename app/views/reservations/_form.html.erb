@@ -1,7 +1,10 @@
 <div class="modal-box">
       <% if params[:action] == 'new'%>
-      <h2> <%= slot.day %> as <%= slot.hour %> </h2>
+      <div>
+        <h2> <%= slot.day %> as <%= slot.hour %> </h2>
+      </div>
       <% end %>
+
       <%= simple_form_for([slot, reservation]) do |f| %>
         <%= f.input :description %>
         <%= f.submit %>
