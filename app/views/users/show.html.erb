@@ -4,13 +4,17 @@
    <h2> <%= @user.name %> </h2>
   </div>
 
-
   <ul class="col-lg-6 col-12 m-auto">
     <% @reservations.each do |reservation|%>
     <li class="border-top border-bottom list-group-item user-page-reservation">
       <p class="font-weight-bold"><%= reservation.description %></p>
       <p>
       <%= reservation.slot.day %> as <%= reservation.slot.hour %>
+      <% if reservation.user == current_user %>
+      <%= link_to slot_reservation_path(reservation.slot, reservation, user: @user), user: @user, method: :delete,  data: { confirm: "Are you sure?" }, remote: true do %>
+      <i class="fas fa-undo"></i>
+      <% end %>
+      <% end %>
       </p>
     </li>
     <% end%>

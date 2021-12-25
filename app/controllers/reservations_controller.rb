@@ -54,9 +54,14 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    respond_to do |format|
-      format.html
-      format.js
+    if params[:user]
+      @user = params[:user]
+      redirect_to user_path(@user)
+    else
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
     @reservation.destroy
   end
