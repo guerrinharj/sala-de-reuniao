@@ -5,7 +5,9 @@
     </div>
 
     <div>
+    <% if user_signed_in? %>
       <%= link_to "Agenda", slots_path, class: "text-dark" %>
+    <% end %>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
