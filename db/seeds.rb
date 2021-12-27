@@ -10,6 +10,17 @@ require 'faker'
 
 Slot.destroy_all
 
+10.times do
+  User.create!([{
+      name: Faker::Name.first_name,
+      email: "#{Faker::Name.first_name}@localhost",
+      password: "some_password",
+      reset_password_token: nil,
+      reset_password_sent_at: nil,
+      remember_created_at: nil
+    }])
+end
+
 def seed_slots(week)
   days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
   hours = (6..23).to_a
