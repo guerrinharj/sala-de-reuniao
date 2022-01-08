@@ -1,5 +1,5 @@
 class Slot < ApplicationRecord
-  has_many :reservations, dependent: :destroy
+  has_one :reservation, dependent: :destroy
 
   validates :day, presence: true
   validates :hour, presence: true
